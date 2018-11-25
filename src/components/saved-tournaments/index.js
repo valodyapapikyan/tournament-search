@@ -33,28 +33,32 @@ class SavedTournamentsList extends Component {
         const updatedList = savedTournaments.filter(item => item.id !== element.id);
 
         this.setState({savedTournamentsList: updatedList}, () => {
-            Storage.addElement('tournaments', this.state.savedTournamentsList)
+            Storage.addElement('tournaments', this.state.savedTournamentsList);
+            this.props.setStorageChanges(Storage.getElement('tournaments'));
         })
     };
 
     render() {
         const {savedTournamentsList} = this.state;
         return (
-            <ul>
+            <div className='saved-list-container'>
                 {
                     savedTournamentsList.map((item) => {
                         return (
-                            <List className="saved-tournaments-container" key={item.id}>
-                                <ListItem
-                                    withRemoveIcon 
-                                    clickHandler={this.deleteTournamentItem}
-                                    item={item}
-                                 />
-                            </List>
+                            <div key={item.id} className="saved-tournaments-item">
+                                <List >
+                                    <ListItem 
+                                        clickHandler={this.deleteTournamentItem}
+                                        item={item}
+                                        withRemoveIcon
+                                        className="item"
+                                    />
+                                </List>
+                            </div>
                         )
                     })
                 }
-            </ul>
+            </div>
         )
     }
 }

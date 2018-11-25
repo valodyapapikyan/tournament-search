@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
-import List from '@material-ui/core/List';
 import {connect} from 'react-redux';
 
 import {tournamentsSelector, setStorageChanges } from '../../ducks/search';
 import ListItem from '../common/list-item';
+import Preloader from '../common/preloader'
+
 import Storage from '../../utils/storage'
 
 
 class searchResult extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            hideSearchResults: true,
+            showPreloader: false,
+        }
+    }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.tournaments) {
+            this.setState({hideSearchResults: false});
+        }
+    }
 
     saveTournament = (item) => {
         let tournaments = [];
+        this.setState({hideSearchResults: true});
 
         if (!Storage.getElement('tournaments')) {
             tournaments.unshift(item);
@@ -20,7 +34,6 @@ class searchResult extends Component {
         } else {
             const savedTournaments = Storage.getElement('tournaments');
             const hasSomeTornaments = savedTournaments.some(tournament => tournament.id === item.id);
-
             if (hasSomeTornaments) {
                 console.warn('can`t save some tournamenst')
             } else {
@@ -34,8 +47,9 @@ class searchResult extends Component {
 
     render() {
         return (
-            <div className="search-result-container">
-                <List>
+           !this.state.hideSearchResults ?
+             <div className="search-result-container">
+                <Preloader show={false || !!this.props.tournaments }/>
                     {
                         Array.isArray(this.props.tournaments ) ?
                         this.props.tournaments.map((item) =>
@@ -46,8 +60,8 @@ class searchResult extends Component {
                             )
                             : this.props.tournaments
                     }
-                </List>
             </div>
+            : null
 
         )
     }

@@ -7,6 +7,7 @@ import {createSelector} from 'reselect';
 const ReducerRecord = Record({
     tournaments: [],
     storageLength: null,
+    loader: false,
 });
 
 export const SET_STORAGE_LENGTH = 'SET_STORAGE_LENGTH';
@@ -19,19 +20,20 @@ export default function reducer(state = new ReducerRecord(), action) {
     switch (type) {
 
         case SET_STORAGE_LENGTH:
-            console.log('abshb', action)
             return state
                 .set('storageLength', payload);
 
         case SEARCH_TOURNAMENTS_REQUEST:
-            return state;
+            return state
+            .set('loader', true)
 
         case SEARCH_TOURNAMENTS_REQUEST_SUCCESS:
             return state
                 .set(
                     'tournaments',
-                    payload.documents ? [...payload.documents.slice(0, 10)] : 'no result found'
-                );
+                     payload.documents ? [...payload.documents.slice(0, 10)] : 'no result found',
+                )
+                .set('loader', false)
 
         default:
             return state;
@@ -58,6 +60,8 @@ const stateSelector = (state) => state[moduleName];
 
 export const tournamentsSelector = createSelector(stateSelector, state => state.tournaments);
 export const storageChangesSelector = createSelector(stateSelector, state => state.storageLength);
+export const loaderStatus = createSelector(stateSelector, state => state.loader);
+
 
 
 export const searchSaga = function* (payload) {
