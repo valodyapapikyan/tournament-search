@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+.idea/inspectionProfiles/
+.idea/modules.xml
+.idea/tournament-search.iml
+.idea/workspace.xml
+.idea/misc.xml
+
+
+node_modules/
+
+public/
+yarn.lock
