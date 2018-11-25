@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-
+.idea
 .idea/inspectionProfiles/
 .idea/modules.xml
 .idea/tournament-search.iml
@@ -9,3 +9,4 @@
 
 node_modules/
 yarn.lock
+.idea
