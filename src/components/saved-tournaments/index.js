@@ -50,6 +50,7 @@ class SavedTournamentsList extends Component {
         const {savedTournamentsList} = this.state;
         return (
             <Fragment>
+            <h2> Saved List</h2>
             <ConfirmDialog  confirm = {this.deleteTournamentItem}/>
                 {
                     savedTournamentsList.map((item) => {
