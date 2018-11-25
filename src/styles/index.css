@@ -20,12 +20,20 @@
     height: 490px;
 }
 
+.search-result-item ul {
+    cursor: pointer;
+}
+
 .saved-tournaments-block{
     overflow-y: scroll;
     height: 560px ;
     width: 40%;
     display: inline-block;
     vertical-align: top;
+}
+
+.remove-btn {
+    cursor: pointer
 }
 
 .saved-tournaments-container {

@@ -19,6 +19,7 @@ class ConfirmDialog extends Component {
     
       handleClose = () => {
         this.setState({ open: false });
+        this.props.setModalStatus(false)
       };
 
       confirm = () => {

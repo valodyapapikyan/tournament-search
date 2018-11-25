@@ -23,7 +23,7 @@ const ResultItem = ({item, clickHandler, ...props}) => {
                     primary={title}
                     secondary={description}
                 />
-                {props.withRemoveIcon ? <span onClick={onClick}>X</span> : null}
+                {props.withRemoveIcon ? <span className='remove-btn' onClick={onClick}>X</span> : null}
             </ListItem>
         </List>
     )
