@@ -13,7 +13,6 @@ class searchResult extends Component {
         super(props);
         this.state = {
             hideSearchResults: true,
-            showPreloader: false,
         }
     }
 
@@ -30,7 +29,6 @@ class searchResult extends Component {
         if (!Storage.getElement('tournaments')) {
             tournaments.unshift(item);
             Storage.addElement('tournaments', tournaments);
-
         } else {
             const savedTournaments = Storage.getElement('tournaments');
             const hasSomeTornaments = savedTournaments.some(tournament => tournament.id === item.id);
@@ -48,8 +46,8 @@ class searchResult extends Component {
     render() {
         return (
            !this.state.hideSearchResults ?
-             <div className="search-result-container">
-                <Preloader show={false || !!this.props.tournaments }/>
+            <div className='search-result-item'>
+                <Preloader/>
                     {
                         Array.isArray(this.props.tournaments ) ?
                         this.props.tournaments.map((item) =>
@@ -60,9 +58,8 @@ class searchResult extends Component {
                             )
                             : this.props.tournaments
                     }
-            </div>
+            </div> 
             : null
-
         )
     }
 }

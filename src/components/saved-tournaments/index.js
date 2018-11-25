@@ -1,17 +1,20 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
 import List from '@material-ui/core/List';
 
 import {setStorageChanges, storageChangesSelector} from '../../ducks/search';
+import { setModalStatus } from '../../ducks/shared'
+
 import Storage from '../../utils/storage';
-import ListItem from '../common/list-item/'
+import ListItem from '../common/list-item/';
+import ConfirmDialog from '../common/modal';
 
 import  '../../styles/index.css'
 
 class SavedTournamentsList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             savedTournamentsList: []
         };
@@ -23,14 +26,19 @@ class SavedTournamentsList extends Component {
         }
     }
 
-    //TODO fix :: set length 
     componentDidMount() {
         Storage.getElement('tournaments') && this.props.setStorageChanges(Storage.getElement('tournaments'));
     }
 
-    deleteTournamentItem = (element) => {
+    getSelectedItem = (element) => {
+        this.props.setModalStatus(true);
+        this.setState({ selected: element})
+    }
+
+    deleteTournamentItem = () => {
+        const {selected} = this.state;
         const savedTournaments = Storage.getElement('tournaments');
-        const updatedList = savedTournaments.filter(item => item.id !== element.id);
+        const updatedList = savedTournaments.filter(item => item.id !== selected.id);
 
         this.setState({savedTournamentsList: updatedList}, () => {
             Storage.addElement('tournaments', this.state.savedTournamentsList);
@@ -41,14 +49,15 @@ class SavedTournamentsList extends Component {
     render() {
         const {savedTournamentsList} = this.state;
         return (
-            <div className='saved-list-container'>
+            <Fragment>
+            <ConfirmDialog  confirm = {this.deleteTournamentItem}/>
                 {
                     savedTournamentsList.map((item) => {
                         return (
-                            <div key={item.id} className="saved-tournaments-item">
-                                <List >
+                            <div className='saved-tournaments-container' key={item.id}>
+                                <List>
                                     <ListItem 
-                                        clickHandler={this.deleteTournamentItem}
+                                        clickHandler={this.getSelectedItem}
                                         item={item}
                                         withRemoveIcon
                                         className="item"
@@ -58,14 +67,14 @@ class SavedTournamentsList extends Component {
                         )
                     })
                 }
-            </div>
+            </Fragment>
         )
     }
 }
 
 export default connect((state) => ({
     storageChangesListener: storageChangesSelector(state)
-}), {setStorageChanges})(SavedTournamentsList);
+}), {setStorageChanges,setModalStatus})(SavedTournamentsList);
 
 
 

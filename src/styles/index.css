@@ -1,11 +1,33 @@
 .app-container {
-    width: 95%;
+    width: 99%;
     text-align: center;
     padding: 10px;
-
     margin: 10px auto;
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
 
+}
+
+.search-block {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.search-result-item {
+    overflow-y: scroll;
+    height: 700px 
+}
+
+.saved-tournaments-block{
+    overflow-y: scroll;
+    height: 700px ;
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.saved-tournaments-container {
+    border-bottom:  1px solid lightgrey;
 }
 
 ::-webkit-scrollbar {
@@ -30,17 +52,6 @@
 
 }
 
-.search-result-container {
-    
-    width: 50%;
-    overflow-y: scroll;
-    height: 500px;
-    /*white-space: nowrap;*/
-    text-align: center;
-    padding: 10px;
-    margin: 0 auto;
-    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-}
 
 .scroll {
     width: 20px;
@@ -73,15 +84,24 @@
 
 }
 
-.saved-tournaments-container ul:hover {
-    transition: .5s;
-    background:#e7ebec;
-}
-
-.item {
-   
-}
-
 .list-item {
     border-bottom: 1px solid lavenderblush;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .saved-tournaments-block{
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+
+    .search-block {
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+
 }

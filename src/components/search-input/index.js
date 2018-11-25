@@ -12,15 +12,18 @@ const SearchInput = ({onSearch}) => {
     }
 
     return (
-        <div>
-            <TextField
-                onKeyUp={handleChange}
-                id="standard-search"
-                label="Search field"
-                type="search"
-                margin="normal"
-            />
-        </div>
+      
+            <div className='search-input'>
+                <TextField
+                    fullWidth
+                    onKeyUp={handleChange}
+                    id="standard-search"
+                    label="Search field"
+                    type="search"
+                    margin="normal"
+                />
+            </div>
+      
     );
 };
 

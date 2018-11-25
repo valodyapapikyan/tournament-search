@@ -8,7 +8,7 @@ import SearchResult from './search-results/index';
 import SavedTournamentsList from './saved-tournaments';
 
 import './../styles/index.css';
-const containerWidth = window.innerWidth;
+const containerHeight= window.innerHeight;
 
 
 class App extends Component {
@@ -17,12 +17,17 @@ class App extends Component {
 
     render() {
         return (
-            <div className="app-container" style={{height:containerWidth}}>
+            <div className='app-container' style={{height: containerHeight}}>
                 <h1>Type here to search tournaments</h1>
-                <SearchInput onSearch={this.onSearch}/>
-                <SearchResult/>
-                <SavedTournamentsList/>
+                <div className='search-block'>
+                    <SearchInput onSearch={this.onSearch}/>
+                    <SearchResult/>
+                </div>
+                <div className='saved-tournaments-block'>
+                    <SavedTournamentsList/>
+                </div>
             </div>
+            
         );
     }
 }
