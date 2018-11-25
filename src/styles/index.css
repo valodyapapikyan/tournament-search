@@ -39,3 +39,14 @@
 .search-result-container ::-webkit-scrollbar-thumb {
     background: #666;
 }
+
+.saved-tournaments-container {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto  ;
+
+}
+
+.list-item {
+    border-bottom: 1px solid gray
+}

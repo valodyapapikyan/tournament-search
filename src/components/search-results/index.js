@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import {connect} from 'react-redux';
 
 import {tournamentsSelector, setStorageChanges } from '../../ducks/search';
-import SearchItem from './result-item';
+import ListItem from '../common/list-item';
 import Storage from '../../utils/storage'
 
 
@@ -39,7 +39,11 @@ class searchResult extends Component {
                     {
                         Array.isArray(this.props.tournaments ) ?
                         this.props.tournaments.map((item) =>
-                            <SearchItem key={item.id} clickHandler={this.saveTournament} item={item}/>)
+                            <ListItem
+                                key={item.id}
+                                clickHandler={this.saveTournament}
+                                item={item}/>
+                            )
                             : this.props.tournaments
                     }
                 </List>
