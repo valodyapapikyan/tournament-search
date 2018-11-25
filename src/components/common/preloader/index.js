@@ -11,7 +11,7 @@ class Preloader extends React.Component {
         return (
             this.props.preloaderStatus ? <div className="spinner">
                 <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                    <circle className="length" fill="none" strokeLinecap="8" strokeLinecap="round" cx="33" cy="33"
+                    <circle className="length" fill="none"  strokeLinecap="round" cx="33" cy="33"
                             r="28"></circle>
                 </svg>
                 <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">

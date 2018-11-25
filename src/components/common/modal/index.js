@@ -6,7 +6,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import {modalStatusSelector, setModalStatus} from '../../../ducks/shared'
+import {modalStatusSelector, setModalStatus} from '../../../ducks/shared';
+
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 class ConfirmDialog extends Component {
     constructor(props) {
