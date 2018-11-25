@@ -1,5 +1,7 @@
 .app-container {
     width: 99%;
+    /* height: 703px; */
+    overflow: hidden;
     text-align: center;
     padding: 10px;
     margin: 10px auto;
@@ -15,12 +17,12 @@
 
 .search-result-item {
     overflow-y: scroll;
-    height: 700px 
+    height: 490px;
 }
 
 .saved-tournaments-block{
     overflow-y: scroll;
-    height: 700px ;
+    height: 560px ;
     width: 40%;
     display: inline-block;
     vertical-align: top;
