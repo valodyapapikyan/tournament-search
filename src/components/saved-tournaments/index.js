@@ -6,11 +6,15 @@ import List from '@material-ui/core/List';
 import {setStorageChanges, storageChangesSelector} from '../../ducks/search';
 import { setModalStatus } from '../../ducks/shared'
 
-import Storage from '../../utils/storage';
+import StorageManager from '../../utils/storage';
 import ListItem from '../common/list-item/';
 import ConfirmDialog from '../common/modal';
 
-import  '../../styles/index.css'
+import  '../../styles/index.css';
+
+const a = StorageManager;
+const b = StorageManager;
+const c = StorageManager;
 
 class SavedTournamentsList extends Component {
     constructor(props) {
@@ -22,12 +26,12 @@ class SavedTournamentsList extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.storageChangesListener !== this.props.storageChangesListener) {
-            this.setState({savedTournamentsList: Storage.getElement('tournaments')})
+            this.setState({savedTournamentsList: StorageManager.getElement('tournaments')})
         }
     }
 
     componentDidMount() {
-        Storage.getElement('tournaments') && this.props.setStorageChanges(Storage.getElement('tournaments'));
+        StorageManager.getElement('tournaments') && this.props.setStorageChanges(StorageManager.getElement('tournaments'));
     }
 
     getSelectedItem = (element) => {
@@ -37,12 +41,12 @@ class SavedTournamentsList extends Component {
 
     deleteTournamentItem = () => {
         const {selected} = this.state;
-        const savedTournaments = Storage.getElement('tournaments');
+        const savedTournaments = StorageManager.getElement('tournaments');
         const updatedList = savedTournaments.filter(item => item.id !== selected.id);
 
         this.setState({savedTournamentsList: updatedList}, () => {
-            Storage.addElement('tournaments', this.state.savedTournamentsList);
-            this.props.setStorageChanges(Storage.getElement('tournaments'));
+            StorageManager.addElement('tournaments', this.state.savedTournamentsList);
+            this.props.setStorageChanges(StorageManager.getElement('tournaments'));
         })
     };
 
