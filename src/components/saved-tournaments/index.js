@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import List from '@material-ui/core/List';
 
-import {setStorageChanges, storageChangesSelector} from '../../ducks/search';
+import {setStorageChanges, storageChangesSelector} from '../../ducks/shared';
 import { setModalStatus } from '../../ducks/shared'
 
 import StorageManager from '../../utils/storage';
@@ -11,10 +11,6 @@ import ListItem from '../common/list-item/';
 import ConfirmDialog from '../common/modal';
 
 import  '../../styles/index.css';
-
-const a = StorageManager;
-const b = StorageManager;
-const c = StorageManager;
 
 class SavedTournamentsList extends Component {
     constructor(props) {

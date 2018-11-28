@@ -6,11 +6,9 @@ import {createSelector} from 'reselect';
 
 const ReducerRecord = Record({
     tournaments: [],
-    storageLength: null,
     loader: false,
 });
 
-export const SET_STORAGE_LENGTH = 'SET_STORAGE_LENGTH';
 export const SEARCH_TOURNAMENTS_REQUEST = 'SEARCH_TOURNAMENTS_REQUEST';
 export const SEARCH_TOURNAMENTS_REQUEST_SUCCESS = 'SEARCH_TOURNAMENTS_REQUEST_SUCCESS';
 
@@ -18,11 +16,6 @@ export default function reducer(state = new ReducerRecord(), action) {
     const {type, payload} = action;
 
     switch (type) {
-
-        case SET_STORAGE_LENGTH:
-            return state
-                .set('storageLength', payload);
-
         case SEARCH_TOURNAMENTS_REQUEST:
             return state
             .set('loader', true)
@@ -40,29 +33,15 @@ export default function reducer(state = new ReducerRecord(), action) {
     }
 }
 
-
-//action craeteors
-
 export function onSearchRequest(pattern) {
     return {type: SEARCH_TOURNAMENTS_REQUEST, pattern}
 };
-
-export function setStorageChanges(payload) {
-    return {
-        type: SET_STORAGE_LENGTH,
-        payload: payload.length
-    }
-}
-
 
 export const moduleName = 'search';
 const stateSelector = (state) => state[moduleName];
 
 export const tournamentsSelector = createSelector(stateSelector, state => state.tournaments);
-export const storageChangesSelector = createSelector(stateSelector, state => state.storageLength);
 export const loaderStatus = createSelector(stateSelector, state => state.loader);
-
-
 
 export const searchSaga = function* (payload) {
     const {pattern} = payload;

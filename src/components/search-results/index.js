@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {tournamentsSelector, setStorageChanges } from '../../ducks/search';
+import {tournamentsSelector } from '../../ducks/search';
+import {setStorageChanges } from '../../ducks/shared';
 import ListItem from '../common/list-item';
 import Preloader from '../common/preloader'
 
 import Storage from '../../utils/storage'
-
 
 class searchResult extends Component {
     constructor(props){
