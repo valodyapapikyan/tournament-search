@@ -1,0 +1,16 @@
+{
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": ["node_modules", "src/"]
+        }
+      }
+    },
+    "extends": ["react-app", "prettier"],
+    "rules": {
+      "no-console": 1,
+      "no-debugger": 2,
+      "jsx-quotes": [1, "prefer-double"]
+    },
+    "plugins": ["prettier"]
+  }
